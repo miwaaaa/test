@@ -45,13 +45,13 @@ export default function MemoDetailScreen(props) {
             <CircleButton
             style= {{top: 60, bottom: 'auto'}}
             name = "edit-2"
-            onPress={ () => { navigation.navigate('MemoEdit'); }}
+            onPress={ () => { navigation.navigate('MemoEdit', { id: memo.id, bodyText: memo.bodyText}); }}
             />
         </View>
     )
 }
 
-MemoDetailScreen.prpTypes = {
+MemoDetailScreen.propTypes = {
     route: shape({
         params: shape({ id: string}),
     }).isRequired,
