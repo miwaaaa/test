@@ -5,6 +5,7 @@ import {
 import CircleButton from '../components/CircleButton';
 import { shape, string} from 'prop-types'
 import firebase from 'firebase';
+import { translateErrors } from '../utils';
 
 export default function MemoEditScreen(props) {
     const { navigation, route } = props;
@@ -19,13 +20,13 @@ export default function MemoEditScreen(props) {
             ref.set({
                 bodyText: body,
                 updatedAt: new Date(),
-
             },{ merge:true})
             .then(() =>{
                 navigation.goBack();
             })
             .catch(() => {
-                Alert.alert(error.code)
+                const errorMsg = translateErrors(error.code);
+                Alert.alert(errorMsg.title,errorMsg.description);
             });
         }
 
