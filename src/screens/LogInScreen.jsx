@@ -28,7 +28,6 @@ export default function LogInScreen(props) {
         firebase.auth().signInWithEmailAndPassword(email,password)
         .then((userCredential) => {
             const { user } =userCredential;
-            console.log( user.uid);
             navigation.reset({
                 index: 0,
                 routes: [{ name: 'MemoList' }],
@@ -36,7 +35,6 @@ export default function LogInScreen(props) {
         })
         .catch((error) => {
             const errorMsg = translateErrors(error.code);
-
             Alert.alert(errorMsg.title,errorMsg.description);
         })
         .then (() => {
